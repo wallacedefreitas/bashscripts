@@ -1,3 +1,7 @@
+echo -e "\n Loading..."
+GEN_MAC=02:$(openssl rand -hex 5 | awk '{print toupper($0)}' | sed 's/\(..\)/\1:/g; s/.$//')
+NEXTID=$(pvesh get /cluster/nextid)
+
 YW=$(echo "\033[33m")
 BL=$(echo "\033[36m")
 HA=$(echo "\033[1;34m")
