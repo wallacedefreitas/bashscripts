@@ -1,3 +1,14 @@
+# Baixar o user-data.yaml do GitHub
+CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/user.yaml"
+CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
+wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
+
+# Baixar o network-config.yaml do GitHub
+CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/network.yaml"
+CLOUDINIT_NET_FILE="network-config-$VMID.yaml"
+wget -O /var/lib/vz/snippets/$CLOUDINIT_NET_FILE "$CLOUDINIT_NET_URL"
+
+
 echo -e "\n Loading..."
 GEN_MAC=02:$(openssl rand -hex 5 | awk '{print toupper($0)}' | sed 's/\(..\)/\1:/g; s/.$//')
 NEXTID=$(pvesh get /cluster/nextid)
@@ -187,15 +198,7 @@ More info at https://github.com/tteck/Proxmox/discussions/2072 \n"
 
 
 
-# Baixar o user-data.yaml do GitHub
-CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/user.yaml"
-CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
-wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
 
-# Baixar o network-config.yaml do GitHub
-CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/network.yaml"
-CLOUDINIT_NET_FILE="network-config-$VMID.yaml"
-wget -O /var/lib/vz/snippets/$CLOUDINIT_NET_FILE "$CLOUDINIT_NET_URL"
 
 # Configurar a VM para usar o Cloud-Init customizado (user-data + network-config)
 qm set $VMID --cicustom "user=local:snippets/$CLOUDINIT_YAML_FILE,network=local:snippets/$CLOUDINIT_NET_FILE"
