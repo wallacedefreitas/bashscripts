@@ -37,11 +37,6 @@ function cleanup() {
 
 TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
-if whiptail --backtitle "Proxmox VE Helper Scripts" --title "Ubuntu 24.04 VM" --yesno "This will create a New Ubuntu 24.04 VM. Proceed?" 10 58; then
-  :
-else
-  header_info && echo -e "⚠ User exited script \n" && exit
-fi
 
 function msg_info() {
   local msg="$1"
@@ -66,16 +61,6 @@ function check_root() {
     sleep 2
     exit
   fi
-}
-
-function pve_check() {
-  if ! pveversion | grep -Eq "pve-manager/8.[1-3]"; then
-    msg_error "This version of Proxmox Virtual Environment is not supported"
-    echo -e "Requires Proxmox Virtual Environment Version 8.1 or later."
-    echo -e "Exiting..."
-    sleep 2
-    exit
-fi
 }
 
 function arch_check() {
@@ -135,7 +120,6 @@ function default_settings() {
 
 check_root
 arch_check
-pve_check
 ssh_check
 default_settings
 
