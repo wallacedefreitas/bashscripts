@@ -100,7 +100,7 @@ function default_settings() {
   FORMAT=",efitype=4m"
   MACHINE=""
   DISK_CACHE=""
-  HN="ubuntu"
+  HN="vmubuntu.sh"
   CPU_TYPE=""
   CORE_COUNT="2"
   RAM_SIZE="2048"
@@ -184,3 +184,15 @@ msg_ok "Created a Ubuntu 24.04 VM ${CL}${BL}(${HN})"
 msg_ok "Completed Successfully!\n"
 echo -e "Setup Cloud-Init before starting \n
 More info at https://github.com/tteck/Proxmox/discussions/2072 \n"
+
+
+
+# Baixar o user-data.yaml do GitHub
+CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/chris2k20/proxmox-cloud-init/refs/heads/main/cloud-init.yml"
+CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
+wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
+
+# Configurar a VM para usar o Cloud-Init customizado
+qm set $VMID --cicustom "user=local:snippets/$CLOUDINIT_YAML_FILE"
+
+qm start $VMID
