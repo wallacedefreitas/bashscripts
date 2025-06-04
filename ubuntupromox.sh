@@ -188,7 +188,7 @@ More info at https://github.com/tteck/Proxmox/discussions/2072 \n"
 
 
 # Baixar o user-data.yaml do GitHub
-CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/chris2k20/proxmox-cloud-init/refs/heads/main/cloud-init.yml"
+CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/runner.yaml"
 CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
 wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
 
