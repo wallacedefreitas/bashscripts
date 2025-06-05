@@ -1,0 +1,16 @@
+#cloud-config
+hostname: ubuntubase
+manage_etc_hosts: true
+users:
+  - name: wally
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+chpasswd:
+  list: |
+    wally:123
+  expire: False
+timezone: America/Sao_Paulo
+runcmd:
+  - timedatectl set-ntp true
+  - apt update && apt upgrade -y && apt install -y curl

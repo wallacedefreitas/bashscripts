@@ -1,10 +1,10 @@
 # Baixar o user-data.yaml do GitHub
-CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/user.yaml"
+CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/user-default.yaml"
 CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
 wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
 
 # Baixar o network-config.yaml do GitHub
-CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/network.yaml"
+CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/network-default.yaml"
 CLOUDINIT_NET_FILE="network-config-$VMID.yaml"
 wget -O /var/lib/vz/snippets/$CLOUDINIT_NET_FILE "$CLOUDINIT_NET_URL"
 
@@ -186,19 +186,13 @@ qm set $VMID \
   -ide2 ${STORAGE}:cloudinit \
   -boot order=scsi0 \
   -serial0 socket \
-  -description "<div align='center'><a href='https://Helper-Scripts.com'><img src='https://raw.githubusercontent.com/tteck/Proxmox/main/misc/images/logo-81x112.png'/></a>
-
-  # Ubuntu 24.04 VM
-
-  <a href='https://ko-fi.com/D1D7EP4GF'><img src='https://img.shields.io/badge/&#x2615;-Buy me a coffee-blue' /></a>
-  </div>" >/dev/null
+  -description "Colocar descrição legal depois" >/dev/null
 
 qm resize $VMID scsi0 50G
 
 msg_ok "Created a Ubuntu 24.04 VM ${CL}${BL}(${HN})"
 msg_ok "Completed Successfully!\n"
-echo -e "Setup Cloud-Init before starting \n
-More info at https://github.com/tteck/Proxmox/discussions/2072 \n"
+echo -e "Setup Cloud-Init before starting the VM.\n"
 
 # Configurar a VM para usar o Cloud-Init customizado (user-data + network-config)
 qm set $VMID --cicustom "user=local:snippets/$CLOUDINIT_YAML_FILE,network=local:snippets/$CLOUDINIT_NET_FILE"

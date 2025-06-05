@@ -1,5 +1,5 @@
 #cloud-config
-hostname: ubuntubase
+hostname: gitruner
 manage_etc_hosts: true
 users:
   - name: wally
@@ -13,7 +13,6 @@ chpasswd:
 timezone: America/Sao_Paulo
 runcmd:
   - timedatectl set-ntp true
-
   - apt update && apt upgrade -y && apt install -y curl
   - su - wally -c "
       echo '1. Criando pasta actions-runner...' &&
