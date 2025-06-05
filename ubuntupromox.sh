@@ -1,10 +1,10 @@
 # Baixar o user-data.yaml do GitHub
-CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/user.yaml"
+CLOUDINIT_YAML_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/user.yaml"
 CLOUDINIT_YAML_FILE="user-data-$VMID.yaml"
 wget -O /var/lib/vz/snippets/$CLOUDINIT_YAML_FILE "$CLOUDINIT_YAML_URL"
 
 # Baixar o network-config.yaml do GitHub
-CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/cloudinit/refs/heads/main/network.yaml"
+CLOUDINIT_NET_URL="https://raw.githubusercontent.com/wallacedefreitas/bashscripts/refs/heads/main/cloudinit/network.yaml"
 CLOUDINIT_NET_FILE="network-config-$VMID.yaml"
 wget -O /var/lib/vz/snippets/$CLOUDINIT_NET_FILE "$CLOUDINIT_NET_URL"
 
