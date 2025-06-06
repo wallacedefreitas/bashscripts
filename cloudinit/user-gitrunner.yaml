@@ -10,6 +10,7 @@ chpasswd:
   list: |
     wally:123
   expire: False
+ssh_pwauth: True
 timezone: America/Sao_Paulo
 runcmd:
   - timedatectl set-ntp true
