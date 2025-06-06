@@ -13,17 +13,4 @@ chpasswd:
 timezone: America/Sao_Paulo
 runcmd:
   - timedatectl set-ntp true
-  - apt update && apt upgrade -y && apt install -y curl
-  - su - wally -c "
-      echo '1. Criando pasta actions-runner...' &&
-      mkdir -p ~/actions-runner &&
-      cd ~/actions-runner &&
-      echo '2. Baixando o pacote do runner...' &&
-      curl -o actions-runner-linux-x64-2.324.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.324.0/actions-runner-linux-x64-2.324.0.tar.gz &&
-      echo '3. Extraindo o pacote...' &&
-      tar xzf ./actions-runner-linux-x64-2.324.0.tar.gz &&
-      echo '4. Configurando o runner...' &&
-      ./config.sh --unattended --url https://github.com/wallacedefreitas/bashscripts --token BBFDIHIPSQUXJFGKUD5EIMLIIBYCS --name $(hostname) &&
-      echo '5. Iniciando o runner...' &&
-      ./run.sh
-    "
+  - apt update && apt upgrade -y && apt install -y curl jq
