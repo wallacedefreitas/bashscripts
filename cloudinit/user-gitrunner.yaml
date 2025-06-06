@@ -23,7 +23,7 @@ runcmd:
       echo '3. Extraindo o pacote...' &&
       tar xzf ./actions-runner-linux-x64-2.324.0.tar.gz &&
       echo '4. Configurando o runner...' &&
-      ./config.sh --url https://github.com/wallacedefreitas/bashscripts --token BBFDIHIPSQUXJFGKUD5EIMLIIBYCS &&
+      ./config.sh --unattended --url https://github.com/wallacedefreitas/bashscripts --token BBFDIHIPSQUXJFGKUD5EIMLIIBYCS --name $(hostname) &&
       echo '5. Iniciando o runner...' &&
       ./run.sh
     "

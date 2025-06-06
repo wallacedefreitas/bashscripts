@@ -111,7 +111,7 @@ function default_settings() {
   FORMAT=",efitype=4m"
   MACHINE=""
   DISK_CACHE=""
-  HN="vmubuntu.sh"
+  HN="ubuntu-lts-gitrunner"
   CPU_TYPE=""
   CORE_COUNT="2"
   RAM_SIZE="2048"
