@@ -1,6 +1,6 @@
 #cloud-config
 hostname: gitruner
-manage_etc_hosts: true
+
 users:
   - name: wally
     groups: sudo,docker
@@ -12,6 +12,15 @@ chpasswd:
   expire: False
 ssh_pwauth: True
 timezone: America/Sao_Paulo
+
+package_upgrade: true
+package_update: true
+
+packages:
+  - curl
+  - jq
+  - docker.io
+  - docker-buildx
+
 runcmd:
   - timedatectl set-ntp true
-  - apt update && apt upgrade -y && apt install -y curl jq docker.io
