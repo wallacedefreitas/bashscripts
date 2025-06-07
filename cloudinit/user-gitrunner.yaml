@@ -21,6 +21,7 @@ packages:
   - jq
   - docker.io
   - docker-buildx
+  - sshpass
 
 runcmd:
   - timedatectl set-ntp true
