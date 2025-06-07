@@ -15,4 +15,3 @@ timezone: America/Sao_Paulo
 runcmd:
   - timedatectl set-ntp true
   - apt update && apt upgrade -y && apt install -y curl jq
-  - su - wally -c "export RUNNER_CFG_PAT=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 && curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s wallacedefreitas/bashscripts"
