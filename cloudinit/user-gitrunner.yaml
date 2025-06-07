@@ -3,7 +3,7 @@ hostname: gitruner
 manage_etc_hosts: true
 users:
   - name: wally
-    groups: sudo
+    groups: sudo,docker
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
 chpasswd:
@@ -14,4 +14,4 @@ ssh_pwauth: True
 timezone: America/Sao_Paulo
 runcmd:
   - timedatectl set-ntp true
-  - apt update && apt upgrade -y && apt install -y curl jq
+  - apt update && apt upgrade -y && apt install -y curl jq docker.io
